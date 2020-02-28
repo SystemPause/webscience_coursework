@@ -44,7 +44,7 @@ ACCESS_TOKEN_SECRET = 'ACCESS_TOKEN_SECRET'
 ```
 
 * The flag `UPLOAD_DATA_FROM_FILE` is set to `False` by default. It is used in order to upload data from a file.json (**has to be named sampleData.json**). 
-	* **<span style="color:red">If set to True it will DELETE the existing database and it will load data from the file.</span>** 
+	* **<span style="color:red">If set to True it will DELETE the existing database and it will load data from the file.</span>** Hence it is better to run it once and then reset the flag to `False`
 	* Extra data can be then added by running **q1\_streamListener.py** or **q1\_rest\_api.py**. 
 
 ### Run Files
