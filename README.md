@@ -1,6 +1,6 @@
 # Web Science Coursework 
 
-## Overview
+## Overview
 
 This repository is specific for the WebScience Coursework taught at the University of Glasgow (2019/2020)
 
