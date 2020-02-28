@@ -48,7 +48,7 @@ ACCESS_TOKEN_SECRET = 'ACCESS_TOKEN_SECRET'
 	* Extra data can be then added by running **q1\_streamListener.py** or **q1\_rest\_api.py**. 
 
 ### Run Files
-All these files can be run with the command `python filenama.py`
+All these files can be run with the command `python filename.py`
 
 * **q1\_streamListener.py** will run the Stream API to get UK based twitters. Runs indefinitely. Has to bo be interrupted. 
 * **q1\_rest\_api.py** Gets 1000 UK based twitters following top topics. If the API key limit has been reached then the program waits for 15mins
