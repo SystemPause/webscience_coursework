@@ -56,6 +56,8 @@ if __name__ == "__main__":
 
     # Convert twitters to a pandas dataframe
     twitter_df = convert_tweet_to_frame(tweets_list)
+    # Remove duplicates
+    twitter_df.drop_duplicates(subset ="_id",keep = False, inplace = True) 
     print(twitter_df)
 
     # Create the tfidfVectoriser and fit_transform it by using tweets text
