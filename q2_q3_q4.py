@@ -95,21 +95,26 @@ if __name__ == "__main__":
     cluster3 = twitter_df[twitter_df['cluster_label'] == 3]
     cluster4 = twitter_df[twitter_df['cluster_label'] == 4]
 
-    clusters_list = [cluster0, cluster1, cluster2, cluster3, cluster4]
+    clusters_dict = {"cluster0": cluster0, 
+                    "cluster1": cluster1,
+                    "cluster2": cluster2,
+                    "cluster3": cluster3,
+                    "cluster4": cluster4,
+                    "Original Dataframe": twitter_df}
 
     # i. Extract important usernames; hashtags and entities/concepts from the
     #    group. The idea here is to describe the strategy you used . [10 marks]
     print(("="*40) + "QUESTION 2Ci " + ("="*40))
     # Extract Important hashtags using a simple dictionary
     top_hashtags = {}
-    for i in range(len(clusters_list)):
-        top_hashtags["cluster" + str(i)] = {}
-        for hashtag_list in clusters_list[i]['hashtags']:
+    for key,value in clusters_dict.items():
+        top_hashtags[key] = {}
+        for hashtag_list in value['hashtags']:
             for hashtag in hashtag_list:
-                if hashtag in top_hashtags["cluster" + str(i)]:
-                    top_hashtags["cluster" + str(i)][hashtag] += 1
+                if hashtag in top_hashtags[key]:
+                    top_hashtags[key][hashtag] += 1
                 else:
-                    top_hashtags["cluster" + str(i)][hashtag] = 1
+                    top_hashtags[key][hashtag] = 1
                 
     # Print results
     print("Printing top hashtags for each cluster:")
@@ -131,14 +136,14 @@ if __name__ == "__main__":
     # Extract Important mentions
     print("Printing top metnions for each cluster:")
     top_mentions = {}
-    for i in range(len(clusters_list)):
-        top_mentions["cluster" + str(i)] = {}
-        for mention_list in clusters_list[i]['user_mentions_screen_name']:
+    for key,value in clusters_dict.items():
+        top_mentions[key] = {}
+        for mention_list in value['user_mentions_screen_name']:
             for mention in mention_list:
-                if mention in top_mentions["cluster" + str(i)]:
-                    top_mentions["cluster" + str(i)][mention] += 1
+                if mention in top_mentions[key]:
+                    top_mentions[key][mention] += 1
                 else:
-                    top_mentions["cluster" + str(i)][mention] = 1
+                    top_mentions[key][mention] = 1
     # Print results
     for el in top_mentions:
         sorted_dict_items = list({k: v for k, v in sorted(top_mentions[el].items(), key=lambda item: item[1], reverse=True)}.items())
