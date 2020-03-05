@@ -21,19 +21,19 @@ def get_tweets_rest(key_words, api, n_items=1000, schedule=False):
     cursor = tweepy.Cursor(api.search, q = key_words_string, lang = "en").items(n_items)
     while True:
         try:
-            status = cursor.next()
-            # Insert into db
-            try:
-                insert_tweet_db(status._json)
-            except:
-                # If an error occurs when trying to insert 
-                # into the DB continue
-                continue
+            for status in cursor: 
+                # Insert into db
+                try:
+                    insert_tweet_db(status._json)
+                except:
+                    # If an error occurs when trying to insert 
+                    # into the DB continue
+                    continue
+            # Finished iterating
+            break
         except tweepy.TweepError:
             time.sleep(60 * 15)
             continue
-        except StopIteration:
-            break
     print("Done collecting tweets")
 
 if __name__ == "__main__":
