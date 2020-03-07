@@ -11,6 +11,7 @@ import access_keys
 from bson import json_util
 
 
+
 """
 author: Alessandro Speggiorin
 studentID: 2268690S
@@ -67,16 +68,16 @@ if __name__ == "__main__":
     # use the elbow method to find best k value
     print("Finding best k value and saving the graph")
     loss =[]
-    for i in range(1, 7):
+    for i in range(1, 8):
         kmeans = KMeans(n_clusters = i).fit(training_set)
         kmeans.fit(training_set)
         loss.append(kmeans.inertia_)
 
-    plt.plot(range(1, 7), loss)
+    plt.plot(range(1, 8), loss)
     plt.title('Elbow method')
     plt.xlabel('No of clusters')
     plt.ylabel('Loss')
-    plt.savefig("elbom_method.png")
+    plt.savefig("elbow_method.png")
     #plt.show()
     print("Elbow method file saved")
 
