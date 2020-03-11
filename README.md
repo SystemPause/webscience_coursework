@@ -43,8 +43,8 @@ ACCESS_TOKEN = 'ACCESS_TOKEN'
 ACCESS_TOKEN_SECRET = 'ACCESS_TOKEN_SECRET'
 ```
 
-* The flag `UPLOAD_DATA_FROM_FILE` is set to `False` by default. It is used in order to upload data from a file.json (**has to be named sampleData.json**). 
-	* **<span style="color:red">If set to True it will DELETE the existing database and it will load data from the file.</span>** Hence it is better to run it once and then reset the flag to `False`
+* The flag `UPLOAD_DATA_FROM_FILE` is used in order to upload data from a file.json (**has to be named sampleData.json**). The variable is set to `False` by default so data from **MongoDB** will be uploaded. 
+	* If set to `True` then data from a file named **sampleData.json** will be loaded. 
 	* Extra data can be then added by running **q1\_streamListener.py** or **q1\_rest\_api.py**. 
 
 ### Run Files
@@ -52,7 +52,7 @@ All these files can be run with the command `python filename.py`
 
 * **q1\_streamListener.py** will run the Stream API to get UK based twitters. Runs indefinitely. Has to bo be interrupted. 
 * **q1\_rest\_api.py** Gets 1000 UK based twitters following top topics. If the API key limit has been reached then the program waits for 15mins
-* **q2\_q3\_q4.py** Runs all the operations required by task 2-3-4. Generated graphs and results are saved in the same directory. All other outputs are displayed in the terminal. Would recommend running `python q2_q3_q4.py > output.txt` in order to inspect the output file. 
+* **q2\_q3\_q4.py** Runs all the operations required by task 2-3-4. Generated graphs and results are saved in the same directory. All other outputs are displayed in the terminal. **Would recommend running `python q2_q3_q4.py > output.txt` in order to inspect the output file.**
 
 
  	

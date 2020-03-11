@@ -38,16 +38,18 @@ if __name__ == "__main__":
     client = MongoClient()
     db = client.twitterDB
 
-    # If the flat UPLOAD_DATA_FROM_FILE is set the try to load and save file in mongoDB
+    # List used in order to store all tweets
+    tweets = []
+    # If the flat UPLOAD_DATA_FROM_FILE is set to True then use sampleData.json as a dataframe
     if access_keys.UPLOAD_DATA_FROM_FILE:
+        print("Uploadin Data from file")
         with open('sampleData.json') as f:
-            file_data = json_util.loads(f.read())
-        # Delete whatever is already in the collection and overwrite with what in the file
-        db["twitterCollection"].drop()
-        db["twitterCollection"].insert_many(file_data)
-
-    # Load all tweets from the DB
-    tweets = db.twitterCollection.find()
+            tweets = json_util.loads(f.read())
+    else:
+        print("Uploading Data from MongoDB")
+        # Just load data directly from MongoDB
+        # Load all tweets from the DB
+        tweets = db.twitterCollection.find()
 
     # Clean tweet texts
     tweets_list = []
@@ -55,6 +57,12 @@ if __name__ == "__main__":
         tweet['text'] = clean_tweet(tweet['text'])
         tweets_list.append(tweet)
 
+    # Check if there are tweets available, otherwise terminate the program
+    if len(tweets_list) == 0:
+        # No tweets available
+        print("NO TWEETS: Upload tweets from a file or use q1_streamListener.py or q1_rest_api.py to download tweets")
+        exit()
+        
     # Convert twitters to a pandas dataframe
     twitter_df = convert_tweet_to_frame(tweets_list)
     # Remove duplicates
@@ -135,7 +143,7 @@ if __name__ == "__main__":
     print("Done printing hashtags")
 
     # Extract Important mentions
-    print("Printing top metnions for each cluster:")
+    print("Printing top mentions for each cluster:")
     top_mentions = {}
     for key,value in clusters_dict.items():
         top_mentions[key] = {}
@@ -262,24 +270,28 @@ if __name__ == "__main__":
     # a. Analyse the data to generate network-based measures like ties, triads.
     print(("="*40) + "QUESTION 4A " + ("="*40))
     # Analyse user mentions
+    print("=" * 40)
     print("Analysing users mentions graph")
     for key, value in users_mentions.items():
         print(key)
         analyse_graph(value['graph'], True)
 
     # Analise network with retweets
+    print("=" * 40)
     print("Analysing users retweets graph")
     for key, value in users_retweets.items():
         print(key)
         analyse_graph(value['graph'], True)
 
     # Analise network with replies
+    print("=" * 40)
     print("Analysing users replies graph")
     for key, value in users_replies.items():
         print(key)
         analyse_graph(value['graph'], True)
 
     # Analise network with hashtags
+    print("=" * 40)
     print("Analysing hashtags graph")
     for key, value in hashtags_dict.items():
         print(key)

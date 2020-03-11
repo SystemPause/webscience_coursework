@@ -38,6 +38,9 @@ def insert_tweet_db(json_data):
 # Helper function used to clean tweets text
 # Reference used https://www.geeksforgeeks.org/twitter-sentiment-analysis-using-python/
 def clean_tweet(tweet): 
+    # Remove the RT text from each tweet. 
+    if "RT" in tweet:
+        tweet = tweet.replace("RT", "")
     return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split()) 
     
 
