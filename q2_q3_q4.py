@@ -42,7 +42,7 @@ if __name__ == "__main__":
     tweets = []
     # If the flat UPLOAD_DATA_FROM_FILE is set to True then use sampleData.json as a dataframe
     if access_keys.UPLOAD_DATA_FROM_FILE:
-        print("Uploadin Data from file")
+        print("Uploading Data from file")
         with open('sampleData.json') as f:
             tweets = json_util.loads(f.read())
     else:
