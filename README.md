@@ -52,7 +52,8 @@ All these files can be run with the command `python filename.py`
 
 * **q1\_streamListener.py** will run the Stream API to get UK based twitters. Runs indefinitely. Has to bo be interrupted. 
 * **q1\_rest\_api.py** Gets 1000 UK based twitters following top topics. If the API key limit has been reached then the program waits for 15mins
-* **q2\_q3\_q4.py** Runs all the operations required by task 2-3-4. Generated graphs and results are saved in the same directory. All other outputs are displayed in the terminal. **Would recommend running `python q2_q3_q4.py > output.txt` in order to inspect the output file.**
+* **q2\_q3\_q4.py** Runs all the operations required by task 2-3-4. Generated graphs and results are saved in the same directory. All other outputs are displayed in the terminal. **Would recommend running `python q2_q3_q4.py > output.txt` in order to inspect the output file.** 
+	* To plot graphs for each network (users networks for mentions,re tweets, replies) set the flag `plot=True` in the function `generate_network(...)` provided in this file (for each of the networks). Be aware that plotting graphs takes few minutes. 
 
 
  	
